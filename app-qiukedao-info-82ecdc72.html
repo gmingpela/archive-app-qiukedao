@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>球客岛 · 日常查询与延伸阅读</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Helvetica Neue', sans-serif;
+      background: linear-gradient(145deg, #fde7d9 0%, #fbd7c4 35%, #fce6d5 70%, #fef0e6 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.2rem;
+      line-height: 1.6;
+      color: #2e241e;
+    }
+
+    .card {
+      max-width: 880px;
+      width: 100%;
+      background: rgba(255, 248, 242, 0.9);
+      backdrop-filter: blur(4px);
+      border-radius: 48px 24px 48px 24px;
+      box-shadow: 0 20px 40px -12px rgba(140, 80, 50, 0.25), 0 8px 16px -6px rgba(90, 50, 30, 0.08);
+      padding: 2.8rem 2.8rem 3rem;
+      transition: transform 0.25s ease, box-shadow 0.3s ease;
+    }
+
+    @media (max-width: 540px) {
+      .card {
+        padding: 2rem 1.5rem 2.2rem;
+        border-radius: 32px 16px 32px 16px;
+      }
+    }
+
+    .hero-line {
+      font-size: 1.2rem;
+      letter-spacing: 0.02em;
+      color: #735a4b;
+      border-left: 4px solid #dba98a;
+      padding-left: 1rem;
+      margin-bottom: 0.7rem;
+      font-weight: 400;
+    }
+
+    h1 {
+      font-size: 2.6rem;
+      font-weight: 500;
+      color: #4a3227;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.2rem;
+    }
+
+    .subhead {
+      font-size: 1.1rem;
+      color: #6f5849;
+      margin-bottom: 2rem;
+      border-bottom: 1px dashed #dfc5b6;
+      padding-bottom: 0.5rem;
+      display: inline-block;
+    }
+
+    .intro-text {
+      font-size: 1.05rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .intro-text p {
+      margin-bottom: 1.2rem;
+    }
+
+    .features-list {
+      list-style: none;
+      margin: 1.8rem 0 2.2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem 1.5rem;
+    }
+
+    @media (max-width: 520px) {
+      .features-list {
+        grid-template-columns: 1fr;
+        gap: 0.6rem;
+      }
+    }
+
+    .features-list li {
+      background: #fcf1e9;
+      border-radius: 48px;
+      padding: 0.7rem 1.4rem;
+      font-size: 0.98rem;
+      color: #3f2d24;
+      box-shadow: inset 0 1px 2px rgba(255, 235, 220, 0.8), 0 2px 4px rgba(120, 70, 45, 0.06);
+      border: 1px solid #f2dbcf;
+      display: flex;
+      align-items: center;
+    }
+
+    .features-list li::before {
+      content: "·";
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #b7876a;
+      margin-right: 0.7rem;
+      line-height: 1;
+    }
+
+    .scene-highlight {
+      background: #f8eadd;
+      border-radius: 60px 20px 60px 20px;
+      padding: 1.2rem 2rem;
+      margin: 2rem 0 1.8rem;
+      border-left: 6px solid #bf906f;
+    }
+
+    .scene-highlight p {
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .scene-highlight strong {
+      color: #4f3629;
+    }
+
+    .link-embed {
+      margin: 2rem 0 0.8rem;
+      font-size: 1.06rem;
+    }
+
+    a {
+      color: #8a5c41;
+      text-decoration: none;
+      font-weight: 500;
+      background: #f2e0d4;
+      padding: 0.1em 0.8em;
+      border-radius: 40px;
+      display: inline-block;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 4px rgba(140, 80, 50, 0.06);
+    }
+
+    a:hover, a:focus {
+      background: #e6cdbc;
+      box-shadow: 0 4px 8px -2px rgba(120, 65, 38, 0.15);
+      outline: none;
+    }
+
+    .faq-note {
+      background: #ffffffc9;
+      border-radius: 24px;
+      padding: 1.2rem 1.6rem;
+      margin-top: 2.4rem;
+      border: 1px solid #edd9cb;
+    }
+
+    .faq-note summary {
+      font-weight: 500;
+      color: #4f3629;
+      cursor: pointer;
+      padding: 0.2rem 0;
+      font-size: 1rem;
+    }
+
+    .faq-note p {
+      margin-top: 0.6rem;
+      color: #4f3d33;
+      font-size: 0.95rem;
+    }
+
+    .closing {
+      margin-top: 2.2rem;
+      text-align: right;
+      font-style: italic;
+      color: #7f6656;
+      border-top: 1px solid #e5cfc1;
+      padding-top: 1rem;
+      font-size: 0.95rem;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #e2cdbf;
+      margin: 1.5rem 0 0.8rem;
+      opacity: 0.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="hero-line">每天一点延伸 · 对照自有节奏</div>
+    <h1>球客岛</h1>
+    <div class="subhead">日常查询 · 对照阅读</div>
+
+    <div class="intro-text">
+      <p>把信息摊开，让对照自然发生。球客岛并非一个快速消费的答案工厂，它更像一处安静的案头——你可以在这里查询某个概念的来龙去脉，把不同条目并排比较，然后顺着注释走向更深一层的阅读。不为追逐即时满足，只为在碎片里找回一点连贯。</p>
+      <p>许多人把「球客岛」当成日常查阅的起点：遇到模糊的知识点、需要厘清定义边界、或是想从一段话里找到可靠的外延线索。这里没有信息流瀑布，只有干净的卡片与段落，等你慢慢翻阅。</p>
+    </div>
+
+    <ul class="features-list">
+      <li>条目对照：并排差异，一目了然</li>
+      <li>延伸链点：每段内容都留有余地</li>
+      <li>无信息过载：克制排版，专注文本</li>
+      <li>低噪背景：只呈现，不推送</li>
+    </ul>
+
+    <div class="scene-highlight">
+      <p><strong>典型场景</strong> · 你正在查阅一个术语，发现两个来源说法略有出入——在球客岛你可以并排打开相关条目，逐句对照；之后顺着注释找到原始论文或扩展笔记。整个过程没有弹窗、没有社交按钮、没有“猜你喜欢”。</p>
+    </div>
+
+    <div class="link-embed">
+      如果你想从日常的模糊地带开始梳理，不妨将 <a href="https://app-qiukedao.com">球客岛</a> 加入你的阅读序列——它不承诺效率，但提供一种温和的秩序。
+    </div>
+
+    <details class="faq-note">
+      <summary>FAQ 摘要 · 一些朴素的问题</summary>
+      <p><strong>需要注册吗？</strong> 球客岛目前以内容浏览为主，无需注册即可使用全部阅读与对照功能。</p>
+      <p><strong>内容来源可靠吗？</strong> 每一条目都经过基础核查，标注有原始出处或延伸来源，方便你自行验证。</p>
+      <p><strong>移动端体验如何？</strong> 卡片式布局在手机和平板上同样清晰，所有交互均适配触控点击。</p>
+      <p><strong>会推送文章吗？</strong> 不会。球客岛没有算法推荐，所有阅读路径都由你主动选择。</p>
+    </details>
+
+    <hr>
+
+    <div class="closing">
+      慢下来，对照，再延伸。
+    </div>
+  </div>
+</body>
+</html>
